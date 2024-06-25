@@ -1,27 +1,22 @@
-class User:
-    def __init__(self, name, password, full_name):
-        self.name = name
-        self.password = password
-        self.full_name = full_name
-
-    def check_login(self, inputted_name: str, inputted_password: str):
-        if inputted_password == self.password and inputted_name == self.name:
-            return True
-        else:
-            return False
-
-    def print_hi(self):
-        print(f'Hi, {self.full_name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
+import sys
+from user import User
+from menu import MenuLogged, MenuUnlogged
 
 if __name__ == '__main__':
-    user1 = User('ja', 'maslo', 'ja ja')
+    user1 = User('j', 'j', 'ja ja')
 
     print("Enter credentials.")
     n = input("username: ")
     p = input("password: ")
 
     if user1.check_login(n, p):
-        user1.print_hi()
+        while True:
+            user1.print_hi()
+            m = MenuLogged(user1)
+            m.print_options()
+            m.select_option()
+            m.execute_option()
     else:
         print('Wrong password or username, pajacu!')
+        m = MenuUnlogged()
+        sys.exit()
