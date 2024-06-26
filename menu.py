@@ -3,9 +3,10 @@ import sys
 
 class MenuLogged:
     def __init__(self, user_):
-        self.options = ('Change password', 'Change full name', 'Logout', 'Exit')
+        self.options = ('Change password', 'Change full name', 'Logout')
         self.selected = None
         self.user = user_
+        self.loop = True
 
     def print_options(self):
         for i, item in enumerate(self.options):
@@ -17,8 +18,8 @@ class MenuLogged:
     def execute_option(self):
         if self.selected == '1' or self.selected == 'Change password':
             self.pick_password()
-        elif self.selected == '4' or self.selected == 'Exit':
-            sys.exit(0)
+        elif self.selected == '3' or self.selected == 'Logout':
+            self.loop = False
 
     def pick_password(self):
         inputted_old_password = str(input('Type current password: '))
