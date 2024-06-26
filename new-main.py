@@ -2,8 +2,9 @@ import sys
 
 from menu import MenuLogged
 from user import User
+from users_io import save_users, load_users
 
-users = [User('admin', 'admin', 'Admin Adas')]
+users = load_users()#[User('admin', 'admin', 'Admin Adas')]
 option = None
 
 
@@ -25,6 +26,7 @@ def register():
 
     new_user = User(username, password, full_name)
     users.append(new_user)
+    save_users(users)
 
 
 def execute_option(selected_option):
