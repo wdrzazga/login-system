@@ -3,11 +3,12 @@ import sys
 from menu import MenuLogged
 from user import User
 
-users = [User('j', 'j', 'ja ja')]
+users = [User('admin', 'admin', 'Admin Adas')]
 option = None
 
 
 def display_menu():
+    print("")
     for menu_option in ('login', 'register', 'exit'):
         print(menu_option)
 
@@ -17,7 +18,13 @@ def get_option():
 
 
 def register():
-    pass
+    print('\nREGISTERING NEW USER\n')
+    username = input('Enter the username: ')
+    password = input('Enter the password: ')
+    full_name = input('What is your real name: ')
+
+    new_user = User(username, password, full_name)
+    users.append(new_user)
 
 
 def execute_option(selected_option):
@@ -39,6 +46,7 @@ def second_menu(u):
         second_menu.print_options()
         second_menu.select_option()
         second_menu_option = second_menu.selected
+        second_menu.execute_option()
 
 
 def login():
@@ -47,7 +55,7 @@ def login():
 
     for u in users:
         if u.check_login(username, password):
-            print (f'hi {u.full_name}')
+            print(f'hi {u.full_name}')
             second_menu(u)
 
 
