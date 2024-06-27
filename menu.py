@@ -1,3 +1,6 @@
+from user_manager import UserManager
+
+
 class MenuLogged:
     def __init__(self, user_):
         self.options = ('Change password', 'Change full name', 'Logout')
@@ -29,6 +32,7 @@ class MenuLogged:
         inputted_old_password = str(input('Type current password: '))
         if inputted_old_password == self.user.password:
             self.user.password = str(input('Type new password: '))
+            UserManager.save_users()
 
 
 class MenuUnlogged:

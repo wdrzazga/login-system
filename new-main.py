@@ -2,11 +2,10 @@ import sys
 
 from menu import MenuLogged
 from user import User
-from users_io import save_users, load_users
+from user_manager import UserManager
 
-users = load_users()#[User('admin', 'admin', 'Admin Adas')]
 option = None
-
+UserManager.load_users()
 
 def display_menu():
     print("")
@@ -25,8 +24,8 @@ def register():
     full_name = input('What is your real name: ')
 
     new_user = User(username, password, full_name)
-    users.append(new_user)
-    save_users(users)
+    UserManager.users.append(new_user)
+    UserManager.save_users()
 
 
 def execute_option(selected_option):
@@ -55,7 +54,7 @@ def login():
     username = input('Enter the username: ')
     password = input('Enter the password: ')
 
-    for u in users:
+    for u in UserManager.users:
         if u.check_login(username, password):
             print(f'hi {u.full_name}')
             second_menu(u)
